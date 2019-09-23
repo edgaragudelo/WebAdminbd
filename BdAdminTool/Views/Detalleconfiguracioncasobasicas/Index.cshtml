@@ -1,0 +1,73 @@
+﻿@model IEnumerable<WebAdminbdTool.Models.Detalleconfiguracioncasobasica>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoDia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdConfiguracionCasobasicaNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdTemporalidadNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdTipoObjetoNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdTipoVariableNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdVariableNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdobjetoNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoDia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdConfiguracionCasobasicaNavigation.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdTemporalidadNavigation.NombreTemporalidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdTipoObjetoNavigation.NombreTipoObjeto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdTipoVariableNavigation.NombreTipoVariable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdVariableNavigation.NombreVariable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdobjetoNavigation.NombreObjeto)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Iddetalleconfiguracioncaso">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Iddetalleconfiguracioncaso">Details</a> |
+                @Html.ActionLink("Ver Datos", "Index", "ValoresvariablesGraficas", new { fechaInicial = ViewData["FechaInicial"], EtapaIni = ViewData["EtapaIni"], EtapaFin = ViewData["EtapaFin"], IdTemporalidad = item.IdTemporalidad, IdVariable = item.IdVariable, IdTipoVariable = item.IdTipoVariable }) |
+                <a asp-action="Delete" asp-route-id="@item.Iddetalleconfiguracioncaso">Delete</a>
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

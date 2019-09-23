@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewData["Title"] = "View";
+}
+
+<h1>View</h1>
+
+<html>
+
+<head>
+
+    <script src="~/js/Chart.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link href="~/lib/bootstrap/dist/css/bootstrap-grid.min.css" rel="stylesheet" />   
+</head>
+
+<body>
+    @foreach (var grafico in ViewBag.Graficos)
+    {
+    <div style="width:100%">
+        <canvas id="@((((string, string, string))grafico).Item1)"></canvas>
+        <hr />
+        <br />
+
+        <input type="checkbox" name="@((((string, string, string))grafico).Item1)" value="@((((string, string, string))grafico).Item1)">@((((string, string, string))grafico).Item1)
+
+        <br>
+
+    </div>
+
+        //@Html.Raw((((string, string, string))ViewBag.Graficos[1]).Item2);
+        var nombreVar = ((((string, string, string))grafico).Item1);
+        // var nombreVar22 = nombreVar[i];
+        var fechas = @Html.Raw((((string, string, string))grafico).Item2);
+        var datos = @Html.Raw((((string, string, string))grafico).Item3);
+
+        <script>
+            var nombreCanvas = document.getElementById('@nombreVar');
+
+            graficar('@nombreVar', @fechas, @datos, nombreCanvas);
+            
+            function graficar(nombreVar, fechas, datos, canvas) {
+                var newchart = new Chart(canvas, {
+                    type: 'line',
+                    data: {
+                        //labels: [1500, 1600, 1700, 1750, 1800, 1850, 1900, 1950, 1999, 2050],
+                        labels: fechas,
+
+                        //labels: ['2000-03-16','2000-03-17','2000-03-18', 1750, 1800, 1850, 1900, 1950, 1999, 2050],
+                        datasets: [{
+                            //  data: [86, 114, 106, 106, 107, 111, 133, 221, 783, 2478],
+                            data: datos,
+                            //label: "pRUEBA DE GRAFICOS",
+                            label: nombreVar,
+                            borderColor: "#3e95cd",
+                            fill: false
+                        }]
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                            text: 'PRUEBA DE MOSTRAR GRAFICA'
+                        }
+                    }
+                });
+                return;
+            }
+            
+        </script>
+
+    }
+    </body>
+</html>

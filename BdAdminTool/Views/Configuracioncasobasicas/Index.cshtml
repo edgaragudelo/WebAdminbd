@@ -1,0 +1,68 @@
+﻿@model IEnumerable<WebAdminbdTool.Models.Configuracioncasobasica>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaInicial)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EtapaInicial)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EtapaFinal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdTemporalidadNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaInicial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EtapaInicial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EtapaFinal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdTemporalidadNavigation.NombreTemporalidad)
+            </td>
+            @*<td>
+            <a asp-action="Edit" asp-route-id="@item.IdConfiguracionCasobasica">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.IdConfiguracionCasobasica">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.IdConfiguracionCasobasica">Delete</a>
+        </td>*@
+
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdConfiguracionCasobasica">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdConfiguracionCasobasica">Details</a> |
+                @Html.ActionLink("Ver caso", "Index", "DetalleConfiguracioncasobasicas", new { configuracionId = item.IdConfiguracionCasobasica, fechaInicial = item.FechaInicial, etapaIni = item.EtapaInicial, etapaFin = item.EtapaFinal }) |
+                <a asp-action="Delete" asp-route-id="@item.IdConfiguracionCasobasica">Borrar</a>
+            </td>
+
+
+        </tr>
+}
+    </tbody>
+</table>

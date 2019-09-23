@@ -1,0 +1,98 @@
+﻿@model IEnumerable<WebAdminbdTool.Models.Valoresvariables>
+
+
+@{
+    ViewData["Title"] = "ValoresvariablesGraficasController";
+}
+
+<h1>ValoresvariablesGraficasController</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Valor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Periodo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fuente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoDia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdObjetoSistemaNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdTemporalidadNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdTipoObjetoNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdTipoVariableNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdVariableNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdunidadNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Valor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Periodo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fuente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoDia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdObjetoSistemaNavigation.NombreObjeto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdTemporalidadNavigation.NombreTemporalidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdTipoObjetoNavigation.NombreTipoObjeto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdTipoVariableNavigation.NombreTipoVariable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdVariableNavigation.NombreVariable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdunidadNavigation.NombreUnidad)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdValorVariable">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdValorVariable">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdValorVariable">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+

@@ -1,0 +1,171 @@
+﻿@model IEnumerable<WebAdminbdTool.Models.Valoresvariables>
+
+@{
+    ViewData["Title"] = "Datos de la Variable";
+}
+
+<h1>Datos de la Variable</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+
+<html>
+
+<head>
+
+    <script src="~/js/Chart.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link href="~/lib/bootstrap/dist/css/bootstrap-grid.min.css" rel="stylesheet" />
+    
+
+    @*<style>
+            #chart_container {
+                width: 40px;
+                height: 40px;
+                border: 1px solid #ff0000;
+                padding: 1px;
+                border-radius: 4px;
+            }
+        </style>*@
+
+</head>
+
+
+<body>
+    @*<div id="chart_container">*@
+    <div style="width:50%">
+        <canvas id="line-chart" height="450" width="600">   </canvas>
+    </div>
+
+    <script>
+        
+          var fechas2 = @Html.Raw(Json.Serialize(ViewBag.Fechas));
+          var datos2 = @Html.Raw(Json.Serialize(ViewBag.Datos));
+           new Chart(document.getElementById("line-chart"), {
+                type: 'line',
+                data: {
+                    //labels: [1500, 1600, 1700, 1750, 1800, 1850, 1900, 1950, 1999, 2050],
+                    labels: fechas2,
+                    //labels: ['2000-03-16','2000-03-17','2000-03-18', 1750, 1800, 1850, 1900, 1950, 1999, 2050],
+                    datasets: [{
+                        //data: [86, 114, 106, 106, 107, 111, 133, 221, 783, 2478],
+                        data: datos2,
+                        label: "Demanda de Energia",
+                        borderColor: "#3e95cd",
+                        fill: false
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Grafica'
+                    }
+                }
+            });        
+    </script>
+
+
+</body>
+</html>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Valor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Periodo)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.TipoDia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdObjetoSistemaNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdTemporalidadNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdTipoObjetoNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdTipoVariableNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdVariableNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdunidadNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Valor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Periodo)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoDia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdObjetoSistemaNavigation.NombreObjeto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdTemporalidadNavigation.NombreTemporalidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdTipoObjetoNavigation.NombreTipoObjeto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdTipoVariableNavigation.NombreTipoVariable)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdVariableNavigation.NombreVariable)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdunidadNavigation.NombreUnidad)
+                </td>
+                <td>
+                    @*  <a asp-action="Edit" asp-route-id="@item.IdValorVariable">Editar</a> |*@
+                    @*  <a asp-action="Details" asp-route-id="@item.IdValorVariable">Detalle</a>*@
+                    @*  <a asp-action="Delete" asp-route-id="@item.IdValorVariable">Delete</a>*@
+
+
+                    @*@Html.ActionLink("Graficar3333", "Index", "MostrarGrafica", new { fechaInicial = ViewData["Fechasnicial"], EtapaIni = ViewData["EtapaIni"], EtapaFin = ViewData["EtapaFin"], IdTemporalidad = item.IdTemporalidad, IdVariable = item.IdVariable, IdTipoVariable = item.IdTipoVariable })*@
+
+                    @*     @Html.ActionLink("Graficar3333", "Index", "MostrarGrafica")*@
+
+
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
